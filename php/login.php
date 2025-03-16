@@ -1,3 +1,47 @@
+<?php
+session_start();
+require './database.php'; // Kết nối database
+
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $remember = isset($_POST['rememberMe']);
+
+    if (!empty($username) && !empty($password)) {
+        $stmt = $conn->prepare("SELECT user_id, user_name, user_password FROM users WHERE user_name = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $user = $result->fetch_assoc();
+
+            if (password_verify($password, $user['user_password'])) {
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_name'] = $user['user_name'];
+
+                if ($remember) {
+                    setcookie("username", $user['user_name'], time() + (86400 * 30), "/");
+                    setcookie("user_id", $user['user_id'], time() + (86400 * 30), "/");
+                }
+
+                header("Location: list.php");
+                exit();
+            } else {
+                $error = "⚠ Sai mật khẩu!";
+            }
+        } else {
+            $error = "⚠ Tài khoản không tồn tại!";
+        }
+
+        $stmt->close();
+    } else {
+        $error = "⚠ Vui lòng nhập đầy đủ thông tin!";
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -69,9 +113,9 @@
 <body>
     <header>
         <nav>
-            <a href="index.html">Home</a> |
-            <a href="login.html">Đăng nhập</a> |
-            <a href="register.html">Đăng ký</a>
+            <a href="index.php">Home</a> |
+            <a href="login.php">Đăng nhập</a> |
+            <a href="register.php">Đăng ký</a>
         </nav>
         <span id="theme-icon" onclick="toggleDarkMode()">🌙</span>
     </header>
@@ -79,24 +123,32 @@
     <section class="content">
         <div class="login-box">
             <h3 class="mb-4">Màn hình đăng nhập</h3>
-            <form>
+
+            <?php if (!empty($error)): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
+
+            <form method="POST">
                 <div class="mb-3 text-start">
                     <label class="form-label">Username</label>
-                    <input type="text" class="form-control" required>
+                    <input type="text" name="username" class="form-control" 
+                        value="<?= isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>" required>
                 </div>
                 <div class="mb-3 text-start">
                     <label class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control" required>
+                    <input type="password" name="password" class="form-control" required>
                 </div>
                 <div class="mb-3 form-switch text-start">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" 
+                        <?= isset($_COOKIE['username']) ? 'checked' : ''; ?>>
                     <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </div>
             </form>
-            <a href="#" class="d-block mt-3">Quên mật khẩu?</a>
+
+            <a href="forgot_password.php" class="d-block mt-3">Quên mật khẩu?</a>
         </div>
     </section>
     

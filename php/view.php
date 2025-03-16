@@ -1,9 +1,33 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bke_users";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+$user = null;
+if (isset($_GET['id'])) {
+    $id = (int) $_GET['id'];
+    $result = $conn->query("SELECT user_name, user_email FROM users WHERE user_id = $id");
+    $user = $result->fetch_assoc();
+}
+
+if (!$user) {
+    echo "<p>Không tìm thấy user!</p>";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách user</title>
+    <title>Thông tin User</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,46 +70,50 @@
         }
         .container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            margin-top: 20px;
+            height: 70vh;
         }
-        table {
-            width: 80%;
-            border-collapse: collapse;
+        .info-box {
             background: white;
-            box-shadow: 0px 0px 10px gray;
+            padding: 30px;
             border-radius: 10px;
-            overflow: hidden;
+            box-shadow: 0px 0px 10px gray;
+            max-width: 500px;
+            width: 100%;
+            text-align: left;
         }
-        .dark-mode table {
+        .dark-mode .info-box {
             background: #1e40af;
             color: white;
         }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
+        .info-box h3 {
+            text-align: center;
         }
-        th {
+        .info-group {
+            margin-bottom: 15px;
+        }
+        .info-group label {
+            font-weight: bold;
+        }
+        .info-group span {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
             background: #007bff;
             color: white;
-        }
-        .dark-mode th {
-            background: #0056b3;
-        }
-        .pagination {
-            margin-top: 15px;
-        }
-        .pagination a {
-            padding: 8px 12px;
-            margin: 0 5px;
-            text-decoration: none;
-            background: #007bff;
-            color: white;
+            border: none;
             border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 16px;
         }
-        .pagination a:hover {
+        .btn:hover {
             background: #0056b3;
         }
     </style>
@@ -102,38 +130,17 @@
     </header>
     
     <div class="container">
-        <h3>Danh sách user</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>UPVH</td>
-                    <td>ATJW@gmail.com</td>
-                    <td><a href="#">Edit</a> | <a href="#">View</a> | <a href="#">Delete</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>IFUK</td>
-                    <td>KULB@gmail.com</td>
-                    <td><a href="#">Edit</a> | <a href="#">View</a> | <a href="#">Delete</a></td>
-                </tr>
-                <!-- Add more users as needed -->
-            </tbody>
-        </table>
-        <div class="pagination">
-            <a href="#">Previous</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">Next</a>
+        <div class="info-box">
+            <h3>Màn hình chi tiết</h3>
+            <div class="info-group">
+                <label>Username:</label>
+                <span><?php echo htmlspecialchars($user['user_name']); ?></span>
+            </div>
+            <div class="info-group">
+                <label>Email:</label>
+                <span><?php echo htmlspecialchars($user['user_email']); ?></span>
+            </div>
+            <a href="update.php?id=<?php echo $id; ?>" class="btn">Chỉnh sửa</a>
         </div>
     </div>
     
@@ -149,3 +156,5 @@
     </script>
 </body>
 </html>
+
+<?php $conn->close(); ?>
