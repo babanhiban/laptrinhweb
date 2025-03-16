@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết người dùng</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background: #007bff;
+            padding: 10px 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .user-detail-container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .user-detail-container h2 {
+            margin-bottom: 20px;
+        }
+        .user-info {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .btn-edit {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Đăng xuất</a>
+    </div>
+    
+    <div class="user-detail-container">
+        <h2>Màn hình chi tiết</h2>
+        <div class="user-info">
+            <p><strong>Username:</strong> test1</p>
+            <p><strong>Email:</strong> test1@gmail.com</p>
+        </div>
+        <a href="#" class="btn-edit">Chỉnh sửa</a>
+    </div>
+    
+    <footer>
+        <p>Lập trình web @01/2024</p>
+    </footer>
+</body>
+</html>
