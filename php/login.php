@@ -113,9 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <nav>
-            <a href="index.php">Home</a> |
-            <a href="login.php">Đăng nhập</a> |
-            <a href="register.php">Đăng ký</a>
+            <a href="./index.php">Home</a> |
+            <a href="./login.php">Đăng nhập</a> |
+            <a href="./register.php">Đăng ký</a>
         </nav>
         <span id="theme-icon" onclick="toggleDarkMode()">🌙</span>
     </header>

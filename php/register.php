@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($email) && !empty($password) && !empty($confirmPassword)) {
         if ($password === $confirmPassword) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_password, create_at) VALUES (?, ?, ?, NOW())");
             $stmt->bind_param("sss", $username, $email, $hashedPassword);
             if ($stmt->execute()) {
                 header("Location: login.php");
@@ -174,9 +174,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
         <header>
             <nav>
-                <a href="./index.html">Home</a> |
-                <a href="./login.html">Đăng nhập</a> |
-                <a href="./register.html">Đăng ký</a>
+                <a href="./index.php">Home</a> |
+                <a href="./login.php">Đăng nhập</a> |
+                <a href="./register.php">Đăng ký</a>
             </nav>
             <button id="toggle-bg">🌙</button>
         </header>

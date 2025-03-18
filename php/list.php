@@ -141,8 +141,8 @@ $result = $conn->query($sql);
 
 <body>
     <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">Đăng xuất</a>
+        <a href="./index.php">Home</a>
+        <a href="./logout.php">Đăng xuất</a>
     </div>
 
     <div class="user-list-container">

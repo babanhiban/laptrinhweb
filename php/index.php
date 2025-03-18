@@ -102,9 +102,9 @@ echo ""  ;
 <body>
     <header>
         <nav>
-            <a href="index.html">Home</a> |
-            <a href="login.html">Đăng nhập</a> |
-            <a href="register.html">Đăng ký</a>
+            <a href="./index.php">Home</a> |
+            <a href="./login.php">Đăng nhập</a> |
+            <a href="./register.php">Đăng ký</a>
         </nav>
         <button id="toggle-bg">🌙</button>
     </header>
@@ -112,7 +112,7 @@ echo ""  ;
     <section class="banner">
         <h1>Chào mừng đến với Website của chúng tôi</h1>
         <p>Khám phá ngay những nội dung thú vị và tiện ích</p>
-        <a href="register.html" class="cta-btn">Đăng ký ngay</a>
+        <a href="./register.php" class="cta-btn">Đăng ký ngay</a>
     </section>
 
     <section class="content">

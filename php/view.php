@@ -124,7 +124,7 @@ if (!$user) {
             <a href="index.html">Home</a>
         </nav>
         <div class="right-section">
-            <a href="logout.html" style="color: white; text-decoration: none;">Đăng xuất</a>
+            <a href="./logout.php" style="color: white; text-decoration: none;">Đăng xuất</a>
             <button id="toggle-bg">🌙</button>
         </div>
     </header>
