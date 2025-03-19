@@ -18,14 +18,14 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Truy vấn tổng số user
-$total_sql = "SELECT COUNT(*) AS total FROM users";
+$total_sql = "SELECT COUNT(*) AS total FROM users WHERE role != 'admin'";
 $total_result = $conn->query($total_sql);
 $total_row = $total_result->fetch_assoc();
 $total_users = $total_row['total'];
 $total_pages = ceil($total_users / $limit);
 
 // Truy vấn lấy danh sách user theo trang
-$sql = "SELECT user_id, user_name, user_email FROM users LIMIT $limit OFFSET $offset";
+$sql = "SELECT user_id, user_name, user_email FROM users WHERE role != 'admin' LIMIT $limit OFFSET $offset";
 $result = $conn->query($sql);
 ?>
 
