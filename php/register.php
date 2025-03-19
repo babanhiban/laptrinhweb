@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
                         </div>
                     </div>
-                    <a href="#" class="login-link">Đã có tài khoản?</a>
+                    <a href="./login.php" class="login-link">Đã có tài khoản?</a>
                     <button type="submit" class="register-btn">Đăng ký</button>
                 </form>
             </div>
