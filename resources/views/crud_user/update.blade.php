@@ -57,9 +57,6 @@
                 </div>
             </form>
         </div>
-        <div class="footer">
-            Lập Trình Web By Nguyễn Huỳnh 22/3/2025
-        </div>
     </div>
 
 </body>

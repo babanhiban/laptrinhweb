@@ -26,9 +26,6 @@
             <a href="{{ route('user.updateUser', ['id' => $messi->id]) }}">Edit</a>
 
         </div>
-        <div class="footer">
-            Lập Trình Web By Nguyễn Huỳnh 22/3/2025
-        </div>
     </div>
     <script src="js/script.js"></script>
 </body>

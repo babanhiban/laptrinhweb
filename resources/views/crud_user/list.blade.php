@@ -56,9 +56,7 @@
             {!! $users->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
 
-        <div class="footer">
-            Lập Trình Web By Nguyễn Huỳnh 22/3/2025
-        </div>
+       
     </div>
 </body>
 
