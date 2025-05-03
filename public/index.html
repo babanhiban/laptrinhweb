@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: black;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #1e3a8a;
+            color: white;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        #toggle-bg {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: white;
+        }
+        .banner {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #007bff, #00d4ff);
+            color: white;
+        }
+        .banner h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .cta-btn:hover {
+            background: #e0e0e0;
+        }
+        .content {
+            padding: 30px;
+            text-align: center;
+        }
+        .content h2 {
+            margin-bottom: 20px;
+        }
+        .service-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .service {
+            width: 30%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dark-mode .service {
+            background: #1e40af;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="login.html">Đăng nhập</a> |
+            <a href="register.html">Đăng ký</a>
+        </nav>
+        <button id="toggle-bg">🌙</button>
+    </header>
+
+    <section class="banner">
+        <h1>Chào mừng đến với Website của chúng tôi</h1>
+        <p>Khám phá ngay những nội dung thú vị và tiện ích</p>
+        <a href="register.html" class="cta-btn">Đăng ký ngay</a>
+    </section>
+
+    <section class="content">
+        <h2>Dịch vụ của chúng tôi</h2>
+        <div class="service-box">
+            <div class="service">
+                <h3>Chất lượng</h3>
+                <p>Dịch vụ uy tín và chất lượng hàng đầu.</p>
+            </div>
+            <div class="service">
+                <h3>Hỗ trợ</h3>
+                <p>Đội ngũ hỗ trợ 24/7, luôn sẵn sàng giúp đỡ.</p>
+            </div>
+            <div class="service">
+                <h3>Bảo mật</h3>
+                <p>Thông tin khách hàng luôn được bảo mật tuyệt đối.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Lập trình web</p>
+    </footer>
+
+    <script>
+        document.getElementById('toggle-bg').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>
